@@ -1,0 +1,40 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: poetry-pytest
+
+on:
+  workflow_dispatch:
+
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }} on ${{ matrix.os }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install Visual C++ 2019 Redistributable (Windows only)
+        if: runner.os == 'Windows'
+        run: |
+          curl -Lo vc_redist.x64.exe https://aka.ms/vs/16/release/vc_redist.x64.exe
+          start /wait vc_redist.x64.exe /quiet /install
+        shell: cmd
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+          poetry install --without dev
+      - name: Test with pytest
+        run: |
+          poetry run pytest
