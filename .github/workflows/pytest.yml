@@ -24,12 +24,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install Visual C++ 2019 Redistributable (Windows only)
-        if: runner.os == 'Windows'
-        run: |
-          curl -Lo vc_redist.x64.exe https://aka.ms/vs/16/release/vc_redist.x64.exe
-          start /wait vc_redist.x64.exe /quiet /install
-        shell: cmd
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
