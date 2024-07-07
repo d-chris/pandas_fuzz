@@ -1,6 +1,22 @@
 # pandas-fuzz
 
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pandas_fuzz)](https://pypi.org/project/pandas_fuzz/)
+[![PyPI](https://img.shields.io/pypi/v/pandas_fuzz)](https://pypi.org/project/pandas_fuzz/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/pandas_fuzz)](https://pypi.org/project/pandas_fuzz/)
+[![PyPI - License](https://img.shields.io/pypi/l/pandas_fuzz)](https://raw.githubusercontent.com/d-chris/pandas_fuzz/main/LICENSE)
+[![GitHub Workflow Test)](https://img.shields.io/github/actions/workflow/status/d-chris/pandas_fuzz/pytest.yml?logo=github&label=pytest)](https://github.com/d-chris/pandas_fuzz/actions/workflows/pytest.yml)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fd-chris.github.io%2Fpandas_fuzz&up_message=pdoc&logo=github&label=documentation)](https://d-chris.github.io/pandas_fuzz)
+[![GitHub tag (with filter)](https://img.shields.io/github/v/tag/d-chris/pandas_fuzz?logo=github&label=github)](https://github.com/d-chris/pandas_fuzz)
+[![Coverage](https://img.shields.io/website?url=https%3A%2F%2Fd-chris.github.io%2Fpandas_fuzz%2Fhtmlcov&up_message=available&down_message=missing&logo=codecov&label=coverage)](https://d-chris.github.io/pandas_fuzz/htmlcov)
+
+---
+
 Extension for `pandas` to use `rapidfuzz` for fuzzy matching.
+
+## Requirements
+
+- Python 3.9 or later
+- On Windows the [Visual C++ 2019 redistributable](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads) is required
 
 ## Installation
 
@@ -60,5 +76,5 @@ dtype: float64
 ```
 
 ## Dependencies
-[![PyPI - pandas](https://img.shields.io/pypi/v/pandas?logo=pandas&logoColor=white&label=pandas)]([https://](https://pypi.org/project/pandas/))
+[![PyPI - pandas](https://img.shields.io/pypi/v/pandas?logo=pandas&logoColor=white&label=pandas)](https://pypi.org/project/pandas/)
 [![PyPI - Version](https://img.shields.io/pypi/v/rapidfuzz?logo=pypi&logoColor=white&label=rapidfuzz)](https://pypi.org/project/rapidfuzz/)
