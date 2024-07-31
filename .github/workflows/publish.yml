@@ -16,7 +16,7 @@ jobs:
           cache: 'poetry'
       - name: Install dependencies
         run: |
-          poetry install --only doc
+          poetry install --without test,dev
       - name: Create Documentation
         run: |
           poetry run python -m docs
