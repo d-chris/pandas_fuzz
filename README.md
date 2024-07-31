@@ -7,7 +7,8 @@
 [![GitHub Workflow Test)](https://img.shields.io/github/actions/workflow/status/d-chris/pandas_fuzz/pytest.yml?logo=github&label=pytest)](https://github.com/d-chris/pandas_fuzz/actions/workflows/pytest.yml)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fd-chris.github.io%2Fpandas_fuzz&up_message=pdoc&logo=github&label=documentation)](https://d-chris.github.io/pandas_fuzz)
 [![GitHub tag (with filter)](https://img.shields.io/github/v/tag/d-chris/pandas_fuzz?logo=github&label=github)](https://github.com/d-chris/pandas_fuzz)
-[![Coverage](https://img.shields.io/website?url=https%3A%2F%2Fd-chris.github.io%2Fpandas_fuzz%2Fhtmlcov&up_message=available&down_message=missing&logo=codecov&label=coverage)](https://d-chris.github.io/pandas_fuzz/htmlcov)
+[![codecov](https://codecov.io/gh/d-chris/pandas_fuzz/graph/badge.svg?token=XLHILYJB00)](https://codecov.io/gh/d-chris/pandas_fuzz)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 
 ---
 

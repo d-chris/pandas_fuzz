@@ -1,5 +1,6 @@
 # tests/conftest.py
 import pytest
+
 from pandas_fuzz import pandas as pd
 
 
