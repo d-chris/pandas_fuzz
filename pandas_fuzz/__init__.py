@@ -1,7 +1,11 @@
-import rapidfuzz
-import pandas
+"""
+.. include:: ../README.md
+"""
 
-from .pdfuzz import FuzzSeriesAccessor, FuzzDataFrameAccessor
+import pandas
+import rapidfuzz
+
+from .pdfuzz import FuzzDataFrameAccessor, FuzzSeriesAccessor
 
 # Dynamically add methods to Accessors based on rapidfuzz_
 for method_name in rapidfuzz.fuzz.__all__:
@@ -18,4 +22,10 @@ for method_name in rapidfuzz.fuzz.__all__:
             FuzzDataFrameAccessor._make_method(method),
         )
 
-__all__ = pandas.__all__
+
+__all__ = [
+    "pandas",
+    "rapidfuzz",
+    "FuzzDataFrameAccessor",
+    "FuzzSeriesAccessor",
+]

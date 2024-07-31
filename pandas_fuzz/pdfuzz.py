@@ -1,5 +1,6 @@
-import pandas as pd
 from functools import wraps
+
+import pandas as pd
 
 
 @pd.api.extensions.register_series_accessor("fuzz")
@@ -26,7 +27,8 @@ class FuzzSeriesAccessor:
 @pd.api.extensions.register_dataframe_accessor("fuzz")
 class FuzzDataFrameAccessor:
     """
-    Apply `rapidfuzz` methods directly to a `pandas.DataFrame` with at least two columns.
+    Apply `rapidfuzz` methods directly to a `pandas.DataFrame` with at least
+    two columns.
 
     `pandas.DataFrame.fuzz.ratio(s1, s2)` applies all rows of columns `s1` and `s2` to
     `rapidfuzz.ratio` and returns the result as a new Series.
@@ -37,7 +39,8 @@ class FuzzDataFrameAccessor:
 
         if self._obj.shape[1] < 2:
             raise ValueError(
-                "Cannot apply FuzzDataFrameAccessor to a DataFrame with less than 2 columns"
+                "Can't apply FuzzDataFrameAccessor to a DataFrame "
+                "with less than 2 columns."
             )
 
     @staticmethod

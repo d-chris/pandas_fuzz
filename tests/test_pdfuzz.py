@@ -1,5 +1,6 @@
-from pandas_fuzz import pandas as pd
 import pytest
+
+from pandas_fuzz import pandas as pd
 
 
 def test_fuzz(accessor):
@@ -22,7 +23,7 @@ def test_series_accessor(fuzzy):
     method = getattr(d.fuzz, func)
     res = method(s2)
 
-    assert type(res) == pd.Series
+    assert type(res) is pd.Series
     pd.testing.assert_series_equal(
         res,
         pd.Series([result]),
@@ -38,7 +39,7 @@ def test_dataframe_accessor(fuzzy):
     method = getattr(d.fuzz, func)
     res = method()
 
-    assert type(res) == pd.Series
+    assert type(res) is pd.Series
     pd.testing.assert_series_equal(
         res,
         pd.Series([100.0, 100.0]),
