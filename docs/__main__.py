@@ -1,18 +1,21 @@
 import subprocess
+from pathlib import Path
 
 
 def main():
+    outdir = Path("docs/public")
+    outdir.mkdir(exist_ok=True, parents=True)
+
     try:
         subprocess.run(
             [
                 "pdoc",
                 "-o",
-                "docs\\public",
+                outdir,
                 "--no-show-source",
                 "-t",
                 "docs\\dark-mode",
                 "pandas_fuzz",
-                "pandas",
             ],
             encoding="utf-8",
             check=True,
