@@ -12,11 +12,10 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.11
-          cache: 'poetry'
+          python-version: 3.12
       - name: Install dependencies
         run: |
-          poetry install --without dev,test,doc
+          poetry install --only main
       - name: Build and publish
         env:
           POETRY_PYPI_TOKEN_TESTPYPI: ${{ secrets.TESTPYPI_TOKEN }}

@@ -27,7 +27,7 @@ pip install pandas_fuzz
 
 ## Usage
 
-To register the extension make sure to import `pandas_fuzz` before using it.
+To register the extension make sure to import `pandas_fuzz` before using it`.
 
 ```python
 import pandas as pd
@@ -46,8 +46,13 @@ from pandas_fuzz import pandas as pd
 
 - `rapidfuzz.fuzz.ratio`
 - `rapidfuzz.fuzz.partial_ratio`
+- `rapidfuzz.fuzz.partial_ratio_alignment`
 - `rapidfuzz.fuzz.token_sort_ratio`
 - `rapidfuzz.fuzz.token_set_ratio`
+- `rapidfuzz.fuzz.token_ratio`
+- `rapidfuzz.fuzz.partial_token_sort_ratio`
+- `rapidfuzz.fuzz.partial_token_set_ratio`
+- `rapidfuzz.fuzz.partial_token_ratio`
 - `rapidfuzz.fuzz.WRatio`
 - `rapidfuzz.fuzz.QRatio`
 
@@ -77,5 +82,8 @@ dtype: float64
 ```
 
 ## Dependencies
+
 [![PyPI - pandas](https://img.shields.io/pypi/v/pandas?logo=pandas&logoColor=white&label=pandas)](https://pypi.org/project/pandas/)
 [![PyPI - Version](https://img.shields.io/pypi/v/rapidfuzz?logo=pypi&logoColor=white&label=rapidfuzz)](https://pypi.org/project/rapidfuzz/)
+
+---
