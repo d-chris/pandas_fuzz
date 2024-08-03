@@ -21,6 +21,7 @@ classifiers = [
   "Operating System :: OS Independent",
 ]
 keywords = [ "pandas", "rapidfuzz" ]
+include = [ "pandas_fuzz/pdfuzz.json" ]
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.13"

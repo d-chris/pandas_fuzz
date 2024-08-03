@@ -36,7 +36,7 @@ def main() -> int:
         from pathlibutil import Path
         from pdoc import pdoc, render
 
-        with Path(__file__).parent as cwd:
+        with Path(__file__).resolve().parent as cwd:
             print(f"\nrunning docs in {cwd=}...")
 
             documentation = cwd / "public"
@@ -50,6 +50,7 @@ def main() -> int:
             documentation.mkdir(parents=True)
 
             config = {
+                "docformat": "numpy",
                 "template_directory": cwd / "dark-mode",
                 "show_source": False,
                 "search": False,
@@ -57,7 +58,6 @@ def main() -> int:
 
             modules = [
                 "pandas_fuzz",
-                "pandas",
                 "rapidfuzz",
             ]
 
@@ -82,7 +82,7 @@ def main() -> int:
         print(f"Creation failed, due missing dependency!\n\tpip install {e.name}")
         return 2
     except Exception as e:
-        print(f"{documentation=} creation failed!\n\t{e}")
+        print(f"{documentation or 'documentation'} creation failed!\n\t{e}", e)
         return 1
 
     print(f"{documentation=} generated successfully.\n")

@@ -1,18 +1,11 @@
-# tests/conftest.py
 import pytest
+from rapidfuzz import fuzz
 
 from pandas_fuzz import pandas as pd
 
 
 @pytest.fixture(
-    params=[
-        "ratio",
-        "partial_ratio",
-        "token_sort_ratio",
-        "token_set_ratio",
-        "WRatio",
-        "QRatio",
-    ]
+    params=[name for name in fuzz.__all__ if callable(getattr(fuzz, name))],
 )
 def rapidfuzz(request):
     return request.param
@@ -22,7 +15,8 @@ def rapidfuzz(request):
     params=[
         pd.Series,
         pd.DataFrame,
-    ]
+    ],
+    ids=lambda x: x.__name__,
 )
 def accessor(request):
     return request.param
@@ -109,6 +103,7 @@ def accessor(request):
             21.42857142857143,
         ),
     ],
+    ids=lambda x: f"{x[0]}-'{x[1]}'-'{x[2]}'_{x[3]:.3f}",
 )
 def fuzzy(request):
     return request.param
