@@ -31,6 +31,7 @@ def main() -> int:
 
     Returns non-zero on failure.
     """
+    documentation = ""
 
     try:
         from pathlibutil import Path
@@ -82,7 +83,7 @@ def main() -> int:
         print(f"Creation failed, due missing dependency!\n\tpip install {e.name}")
         return 2
     except Exception as e:
-        print(f"{documentation or 'documentation'} creation failed!\n\t{e}", e)
+        print(f"{documentation or 'documentation'} creation failed!\n\t{e}")
         return 1
 
     print(f"{documentation=} generated successfully.\n")

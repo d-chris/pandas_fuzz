@@ -24,7 +24,7 @@ jobs:
           cache: 'poetry'
       - name: Install dependencies
         run: |
-          poetry install --without dev
+          poetry install --only main,test
       - name: Test with pytest
         run: |
           poetry run pytest
@@ -34,6 +34,7 @@ jobs:
           name: coverage-${{ matrix.python-version }}-${{ matrix.os }}
           path: coverage.xml
           overwrite: true
+          retention-days: 1
   coverage:
     runs-on: ubuntu-latest
     needs: test
