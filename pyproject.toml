@@ -23,6 +23,10 @@ classifiers = [
 keywords = [ "pandas", "rapidfuzz" ]
 include = [ "pandas_fuzz/pdfuzz.json" ]
 
+[tool.poetry.urls]
+repository = "https://github.com/d-chris/pandas_fuzz"
+documentation = "https://d-chris.github.io/pandas_fuzz"
+
 [tool.poetry.dependencies]
 python = ">=3.9,<3.13"
 pandas = "^2.2.2"
