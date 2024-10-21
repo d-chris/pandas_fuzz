@@ -17,14 +17,19 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
 ]
 keywords = [ "pandas", "rapidfuzz" ]
 include = [ "pandas_fuzz/pdfuzz.json" ]
 
+[tool.poetry.urls]
+repository = "https://github.com/d-chris/pandas_fuzz"
+documentation = "https://d-chris.github.io/pandas_fuzz"
+
 [tool.poetry.dependencies]
-python = ">=3.9,<3.13"
+python = "^3.9"
 pandas = "^2.2.2"
 rapidfuzz = "^3.9.4"
 
@@ -38,7 +43,7 @@ tox = "^4.16.0"
 
 [tool.poetry.group.docs.dependencies]
 pdoc = "^14.5.1"
-pathlibutil = "^0.2.1"
+pathlibutil = "^0.3.2"
 
 [[tool.poetry.source]]
 name = "PyPI"
