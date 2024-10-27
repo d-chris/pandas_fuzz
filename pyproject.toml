@@ -44,6 +44,7 @@ tox = "^4.16.0"
 [tool.poetry.group.docs.dependencies]
 pdoc = "^14.5.1"
 pathlibutil = "^0.3.2"
+jinja2 = "^3.1.4"
 
 [[tool.poetry.source]]
 name = "PyPI"
