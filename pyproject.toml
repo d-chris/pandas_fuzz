@@ -36,13 +36,14 @@ rapidfuzz = "^3.9.4"
 [tool.poetry.group.test.dependencies]
 pytest = "^8.2.2"
 pytest-random-order = "^1.1.1"
-pytest-cov = "^5.0.0"
+pytest-cov = ">=5.0.0"
+pytest-mock = "^3.14.0"
 
 [tool.poetry.group.dev.dependencies]
 tox = "^4.16.0"
 
 [tool.poetry.group.docs.dependencies]
-pdoc = "^14.5.1"
+pdoc = ">=14.5.1"
 pathlibutil = "^0.3.2"
 
 [[tool.poetry.source]]
@@ -64,4 +65,10 @@ addopts = [
   "--cov=pandas_fuzz",
   "--cov-report=term-missing:skip-covered",
   "--cov-report=xml",
+]
+
+[tool.coverage.run]
+omit = [
+  "*/tests/*",
+  "*/docs/*",
 ]
