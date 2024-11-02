@@ -5,7 +5,7 @@
 import pandas
 import rapidfuzz
 
-from .pdfuzz import FuzzDataFrameAccessor, FuzzSeriesAccessor
+from pandas_fuzz.pdfuzz import FuzzDataFrameAccessor, FuzzSeriesAccessor
 
 __functions__ = [
     func for func in rapidfuzz.fuzz.__all__ if callable(getattr(rapidfuzz.fuzz, func))
