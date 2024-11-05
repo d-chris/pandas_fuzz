@@ -1,0 +1,74 @@
+name: poetry-update
+on:
+  workflow_dispatch: # Allows manual triggering
+  schedule:
+    - cron: '0 12 * * 5' # Runs every Friday at noon
+env:
+  PYTHON_VERSION: '3.12'
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      latest: ${{ steps.check.outputs.latest }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Install Poetry
+        run: pip install poetry poetry-plugin-hook
+      - name: Setup Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'poetry'
+      - name: Check dependencies
+        id: check
+        continue-on-error: true
+        run: |
+          stdout=$(poetry hook latest --only=main --no-ansi)
+          echo $stdout
+          if [[ $? -ne 0 ]]; then
+            echo "latest=$stdout" >> $GITHUB_OUTPUT
+          else
+            echo "latest=" >> $GITHUB_OUTPUT
+          fi
+  update:
+    runs-on: ubuntu-latest
+    needs: check
+    if: needs.check.outputs.latest != ''
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Install Poetry
+        run: pip install poetry poetry-plugin-hook
+      - name: Setup Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'poetry'
+      - name: Update dependencies
+        run: |
+          poetry update --only=main --lock
+          poetry hook latest --only=main
+      - name: sync dependencies
+        id: sync
+        continue-on-error: true
+        run: |
+          poetry hook sync --only main,test --no-ansi
+          echo "exitcode=$?" >> $GITHUB_OUTPUT
+      - name: Testing pandas_fuzz
+        id: test
+        if: steps.sync.outputs.exitcode != 0
+        run: |
+          poetry run pytest -x -W error --no-cov
+      - name: Commit poetry.lock
+        if: steps.test.conclusion == 'success'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "[CI] poetry update --only=main\n\n${{ needs.check.outputs.latest }}"
+          branch: ci
+          create_branch: true
+          file_pattern: 'poetry.lock'

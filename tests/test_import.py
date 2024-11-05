@@ -1,18 +1,39 @@
 import importlib
-import warnings
 from pathlib import Path
+from unittest import mock
+
+import pytest
+
+from docs import check
 
 
-def test_docstrings(mocker):
+@pytest.mark.filterwarnings("ignore::UserWarning")
+def test_docstrings():
+    """
+    Test error case if json containing docstring is not found.
 
-    with warnings.catch_warnings(record=True):
-        try:
-            with mocker.patch.object(Path, "read_text", side_effect=FileNotFoundError):
+    Filter out UserWarning from pandas of overwriting existing accessors due to reload.
+    """
 
-                import pandas_fuzz
+    try:
+        with mock.patch.object(Path, "read_text", side_effect=FileNotFoundError):
 
-                importlib.reload(pandas_fuzz.pdfuzz)
+            import pandas_fuzz
 
-                assert pandas_fuzz.pdfuzz._docstrings_ == {}
-        finally:
-            importlib.reload(pandas_fuzz)
+            importlib.reload(pandas_fuzz.pdfuzz)
+
+            assert pandas_fuzz.pdfuzz._docstrings_ == {}
+    finally:
+        importlib.reload(pandas_fuzz.pdfuzz)
+        importlib.reload(pandas_fuzz)
+
+
+def test_docsjson(capsys):
+    """
+    Test if json containing docstrings has one for each function.
+
+    Catch any print() messages.
+    """
+
+    assert check() == 0
+    capsys.readouterr()
